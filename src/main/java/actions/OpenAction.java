@@ -13,19 +13,23 @@ public class OpenAction implements InputAction {
 
     @Override
     public void run(WebDriver driver) {
+    	
         // This method won't use the passed driver — it'll create and return a new one
         if (url == null || url.isEmpty()) {
             System.out.println("No URL provided.");
             return;
         }
 
-        System.setProperty("webdriver.chrome.driver", "C:/Users/AMR/chromedriver-win64/chromedriver-win64/chromedriver.exe"); // Your path
+        System.setProperty("webdriver.chrome.driver", "C:/Users/AMR/chromedriver-win64/chromedriver.exe"); // Your path
         driver.get(url);
     }
 
     // New helper method
     public WebDriver createDriver() {
-        System.setProperty("webdriver.chrome.driver", "C:/Users/AMR/chromedriver-win64/chromedriver-win64/chromedriver.exe");
+        System.setErr(new java.io.PrintStream(new java.io.OutputStream() {
+            public void write(int b) {}
+        }));
+        System.setProperty("webdriver.chrome.driver", "C:/Users/AMR/chromedriver-win64/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         return driver;

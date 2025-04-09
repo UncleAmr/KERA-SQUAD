@@ -11,6 +11,8 @@ public class ActionTranslator {
                 return "actions.TypeAction";
             case "sleep":
                 return "actions.SleepAction";
+            case "validate":
+                return "actions.ValidateAction"; 
             default:
                 return null;
         }

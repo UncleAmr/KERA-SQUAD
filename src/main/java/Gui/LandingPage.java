@@ -74,7 +74,7 @@ public class LandingPage {
             String testCaseName = testCaseNameField.getText().trim();
             if (!testCaseName.isEmpty()) {
                 frame.dispose();
-                new MainGUI(testCaseName); // Use ThemeManager state in MainGUI
+                new MainGUI(testCaseName); 
             } else {
                 JOptionPane.showMessageDialog(frame, "Please enter a valid test case name.");
             }

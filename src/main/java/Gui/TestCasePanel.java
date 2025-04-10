@@ -1,6 +1,8 @@
 package Gui;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +12,19 @@ public class TestCasePanel {
     private final JPanel stepsPanel;
     private final List<JComboBox<String>> actionDropdowns;
     private final List<JComponent[]> inputComponents;
+    private final String testCaseName;
 
     public TestCasePanel(String testCaseTitle) {
+        this.testCaseName = testCaseTitle; 
         testCaseContainer = new JPanel();
         testCaseContainer.setLayout(new BorderLayout());
         testCaseContainer.setOpaque(false);
         testCaseContainer.setBorder(BorderFactory.createTitledBorder(testCaseTitle));
+        TitledBorder border = BorderFactory.createTitledBorder(testCaseTitle);
+        border.setTitleColor(Color.gray); // <- set title text color here
+        border.setTitleFont(new Font("SansSerif", Font.BOLD, 17));
+        testCaseContainer.setBorder(border);
+
 
         stepsPanel = new JPanel();
         stepsPanel.setOpaque(false);
@@ -52,5 +61,9 @@ public class TestCasePanel {
 
     public void addInputComponents(JComponent[] components) {
         inputComponents.add(components);
+    }
+
+    public String getTestCaseName() {
+        return testCaseName;
     }
 }

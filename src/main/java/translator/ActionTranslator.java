@@ -13,6 +13,8 @@ public class ActionTranslator {
                 return "actions.SleepAction";
             case "validate":
                 return "actions.ValidateAction"; 
+            case "scroll":
+                return "actions.ScrollAction";
             default:
                 return null;
         }

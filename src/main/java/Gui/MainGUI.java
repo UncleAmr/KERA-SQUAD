@@ -1,16 +1,19 @@
 package Gui;
 
 import javax.swing.*;
+import testng.TestRunner;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 import translator.ActionTranslator;
 import executor.CodeExecutor;
+import testng.TestClassGenerator;
+import testng.TestNGXmlGenerator;
 
 public class MainGUI {
-    private static final String[] actions = {"Open", "Click", "Type", "Sleep", "Validate"};
-    private static final String[] locatorTypes = {"ID", "Name", "Class", "Type", "Value"};
+    private static final String[] actions = {"Open", "Click", "Type", "Scroll","Sleep", "Validate"};
+    private static final String[] locatorTypes = {"ID", "Name", "Class", "Type", "Value" , "Placeholder"};
 
     private final List<TestCasePanel> testCasePanels = new ArrayList<>();
     private boolean isDarkMode = false;
@@ -108,6 +111,7 @@ public class MainGUI {
         // Initial test case
         TestCasePanel firstPanel = createNewTestCase(testCaseName);
         testCaseSelector.addItem(testCaseName);
+        
 
 
         addStepButton.addActionListener(e -> {
@@ -163,7 +167,10 @@ public class MainGUI {
                         String locatorType = ((JComboBox<?>) comps[0]).getSelectedItem().toString().toLowerCase();
                         String locatorValue = ((JTextField) comps[1]).getText().trim();
                         input = locatorType + "::" + locatorValue;
-                    } else {
+                    } else if ("Scroll".equals(action)) {
+                        input = ((JTextField) comps[1]).getText().trim(); // expects "down::300"
+                    }
+                    else {
                         input = ((JTextField) comps[1]).getText().trim();
                     }
 
@@ -171,12 +178,19 @@ public class MainGUI {
                     inputs.add(input);
                 }
 
+                
+                String currentTestCaseName = panel.getTestCaseName();
+                TestClassGenerator.generateTestClass(currentTestCaseName, classNames, inputs);
+                TestNGXmlGenerator.generateXmlByPackage();
+//                TestRunner.runTests();
                 String result = CodeExecutor.executeSteps(classNames, inputs);
                 allResults.append(result).append("\n");
             }
 
             outputArea.setText(allResults.toString());
         });
+
+
 
         JButton closeButton = new JButton("✕") {
             @Override
@@ -217,6 +231,7 @@ public class MainGUI {
         TestCasePanel panel = new TestCasePanel(name);
         testCasePanels.add(panel);
         testCasesHolder.add(panel.getTestCaseContainer());
+        
         return panel;
     }
 

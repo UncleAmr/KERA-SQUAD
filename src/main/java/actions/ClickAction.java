@@ -26,7 +26,9 @@ public class ClickAction implements InputAction {
                 by = By.id(locatorValue);
                 break;
             case "name":
-                by = By.name(locatorValue);
+//                by = By.name(locatorValue);
+            	by = By.xpath("//*[contains(@name, '" + locatorValue + "')]");
+                
                 break;
             case "class":
                 by = By.className(locatorValue);

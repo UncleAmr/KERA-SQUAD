@@ -9,7 +9,7 @@ public class TypeAction implements InputAction {
     private String text;
     @Override
     public void setInput(String input) {
-        String[] parts = input.split("::", 3);  // Expect 3 parts now
+        String[] parts = input.split("::", 3);  
         String locatorType = parts.length > 0 ? parts[0] : "";
         String locatorValue = parts.length > 1 ? parts[1] : "";
         this.text = parts.length > 2 ? parts[2] : "";

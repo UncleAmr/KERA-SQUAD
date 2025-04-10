@@ -108,7 +108,6 @@ public class MainGUI {
             mainPanel.repaint();
         });
 
-        // Initial test case
         TestCasePanel firstPanel = createNewTestCase(testCaseName);
         testCaseSelector.addItem(testCaseName);
         
@@ -127,7 +126,6 @@ public class MainGUI {
             if (testName != null && !testName.trim().isEmpty()) {
                 testName = testName.trim();
 
-                // Check for duplicates
                 for (int i = 0; i < testCaseSelector.getItemCount(); i++) {
                     if (testCaseSelector.getItemAt(i).equalsIgnoreCase(testName)) {
                         JOptionPane.showMessageDialog(null, "A test case with this name already exists.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -224,7 +222,7 @@ public class MainGUI {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        addStepToTestCase(firstPanel); // Add first step to initial test case
+        addStepToTestCase(firstPanel); 
     }
 
     private TestCasePanel createNewTestCase(String name) {

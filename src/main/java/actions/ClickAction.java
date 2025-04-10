@@ -23,7 +23,8 @@ public class ClickAction implements InputAction {
         By by;
         switch (locatorType) {
             case "id":
-                by = By.id(locatorValue);
+//                by = By.id(locatorValue);
+                by = By.xpath("//*[contains(@id, '" + locatorValue + "')]");
                 break;
             case "name":
 //                by = By.name(locatorValue);
@@ -31,13 +32,15 @@ public class ClickAction implements InputAction {
                 
                 break;
             case "class":
-                by = By.className(locatorValue);
+//                by = By.className(locatorValue);
+                by = By.xpath("//*[contains(@class, '" + locatorValue + "')]");
                 break;
             case "type":
                 by = By.cssSelector("[type='" + locatorValue + "']");
                 break;
             case "value":
-                by = By.cssSelector("[value='" + locatorValue + "']");
+//                by = By.cssSelector("[value='" + locatorValue + "']");
+                by = By.xpath("//*[contains(@value, '" + locatorValue + "')]");
                 break;
             default:
                 throw new Exception("Unsupported locator type: " + locatorType);

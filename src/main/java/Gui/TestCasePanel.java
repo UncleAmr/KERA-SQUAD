@@ -21,7 +21,7 @@ public class TestCasePanel {
         testCaseContainer.setOpaque(false);
         testCaseContainer.setBorder(BorderFactory.createTitledBorder(testCaseTitle));
         TitledBorder border = BorderFactory.createTitledBorder(testCaseTitle);
-        border.setTitleColor(Color.gray); // <- set title text color here
+        border.setTitleColor(Color.gray); 
         border.setTitleFont(new Font("SansSerif", Font.BOLD, 17));
         testCaseContainer.setBorder(border);
 

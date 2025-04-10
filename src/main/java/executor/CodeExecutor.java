@@ -10,7 +10,7 @@ public class CodeExecutor {
 	private static String extractMeaningfulError(String fullMessage) {
 	    if (fullMessage == null) return "Unknown error.";
 
-	    // Try to extract meaningful "Unable to locate element" portion
+	    
 	    if (fullMessage.contains("Unable to locate element")) {
 	        int startIndex = fullMessage.indexOf("Unable to locate element");
 	        int endIndex = fullMessage.indexOf("}", startIndex); // End after the JSON-like selector
@@ -26,11 +26,9 @@ public class CodeExecutor {
 	                    .replace(",", " ")
 	                    .trim();
 	        } else {
-	            return fullMessage.substring(startIndex).split("\n")[0]; // Fallback to first line
+	            return fullMessage.substring(startIndex).split("\n")[0]; 
 	        }
 	    }
-
-	    // Fallback: only first line
 	    return fullMessage.split("\n")[0];
 	}
 
